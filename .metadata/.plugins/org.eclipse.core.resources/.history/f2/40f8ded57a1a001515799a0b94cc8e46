@@ -1,0 +1,12 @@
+package edu.utexas.yh7483.tankwar;
+
+public class Explode {
+	int xpos, ypos;
+	private boolean live = true;
+	
+	Explode(int xpos, int ypos, TankClient tc){
+		this.xpos = xpos;
+		this.ypos = ypos;
+		this.tc = tc;
+	}
+}

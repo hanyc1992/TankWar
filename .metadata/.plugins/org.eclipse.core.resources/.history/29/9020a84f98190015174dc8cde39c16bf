@@ -1,0 +1,20 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+
+public class Tank {
+	
+	public static final int TANK_RADIUS = 30;
+	
+	int xpos, ypos;
+	
+	public Tank(int xpos, int ypos) {
+		this.xpos = xpos;
+		this.ypos = ypos;
+	}
+	
+	public void draw(Graphics g) {
+		
+	}
+	
+}

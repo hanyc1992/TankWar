@@ -1,0 +1,5 @@
+package edu.utexas.yh7483.tankwar;
+
+public class Barrier {
+	int xpos, ypos;
+}

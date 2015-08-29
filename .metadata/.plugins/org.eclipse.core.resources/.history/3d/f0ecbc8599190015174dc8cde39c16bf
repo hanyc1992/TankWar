@@ -1,0 +1,45 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class Tank {
+	
+	public static final int TANK_RADIUS = 30;
+	
+	int xpos, ypos;
+	
+	public Tank(int xpos, int ypos) {
+		this.xpos = xpos;
+		this.ypos = ypos;
+	}
+	
+	public void draw(Graphics g) {
+		
+		Color c = g.getColor();
+		g.setColor(Color.RED);
+		g.fillOval(xpos, ypos, 30, 30);
+		g.setColor(c);
+		
+	}
+	
+	private class KeyMonitor extends KeyAdapter{
+
+		public void keyPressed(KeyEvent e) {
+			switch(e.getKeyCode()) {
+			case KeyEvent.VK_UP:
+				ypos -= 3; break;
+			case KeyEvent.VK_DOWN:
+				ypos += 3; break;
+			case KeyEvent.VK_LEFT:
+				xpos -= 3; break;
+			case KeyEvent.VK_RIGHT:
+				xpos += 3; break;
+			default:
+				break;
+			}
+		}
+		
+	}
+}

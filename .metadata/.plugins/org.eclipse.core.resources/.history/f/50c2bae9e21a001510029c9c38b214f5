@@ -1,0 +1,14 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+
+public class Barrier {
+	
+	public static final int BARRIER_WIDTH = 10;
+	public static final int BARRIER_HEIGHT = 160;
+	
+	public static final Color BARRIER_COLOR = Color.BLACK;
+	
+	int xpos, ypos;
+	
+}

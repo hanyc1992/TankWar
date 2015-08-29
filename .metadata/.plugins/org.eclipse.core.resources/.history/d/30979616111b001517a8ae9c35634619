@@ -1,0 +1,31 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+
+public class Aid {
+	public static final Color AID_COLOR = Color.MAGENTA;
+	public static final int AID_ENERGY = 40;
+	
+	int xpos, ypos, width, height;
+	boolean live = true;
+	TankClient tc = null;
+	
+	public Aid(int xpos, int ypos, int width, int height, TankClient tc) {
+		super();
+		this.xpos = xpos;
+		this.ypos = ypos;
+		this.width = width;
+		this.height = height;
+		this.tc = tc;
+	}
+	
+	public void draw(Graphics g) {
+		if(live ==false)
+			return;
+		
+		Color c = g.getColor();
+		g.setColor(AID_COLOR);
+		g.fillRect(xpos, ypos, width, height);
+		g.setColor(c);
+	}
+}

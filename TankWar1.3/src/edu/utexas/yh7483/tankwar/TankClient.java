@@ -1,0 +1,106 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+public class TankClient extends Frame{
+	
+	public static final int GAME_WEIGHT = 800;
+	public static final int GAME_HEIGHT = 600;
+	public static final int FLASH_TIME = 50;
+	public static final int XSTART = 100;
+	public static final int YSTART = 100;
+	
+	public static final Color BACKGROUND_COLOR = Color.GREEN;
+	
+	
+	Image offScreenImage = null;
+	Tank myTank = new Tank(XSTART, YSTART, this);
+	List<Missile> arrMissile = new ArrayList<Missile>();
+
+	public static void main(String[] args) {
+		
+		TankClient tc = new TankClient();
+		tc.launchFrame();
+		
+	}
+	
+	public void launchFrame(){
+		
+		this.setLocation(100, 100);
+		this.setSize(GAME_WEIGHT, GAME_HEIGHT);
+		this.setBackground(BACKGROUND_COLOR);
+		this.setTitle("TankWar");
+		this.setVisible(true);
+		this.setResizable(false);
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		this.addKeyListener(new KeyMonitor());
+		new Thread(new PaintThread()).start();
+		
+	}
+	
+	public void paint(Graphics g) {
+		
+		myTank.draw(g);
+		
+		Iterator<Missile> iter = arrMissile.iterator();
+		while(iter.hasNext()){
+			iter.next().draw(g);
+		}
+		
+		g.drawString("missiles count:" + arrMissile.size(), 10, 50);
+		
+	}
+	
+	public void update(Graphics g) {
+		
+		if(offScreenImage == null)
+			offScreenImage = this.createImage(GAME_WEIGHT, GAME_HEIGHT);
+		Graphics gOffScreenImage = offScreenImage.getGraphics();
+		
+		Color c = gOffScreenImage.getColor();
+		gOffScreenImage.setColor(BACKGROUND_COLOR);
+		gOffScreenImage.fillRect(0, 0, GAME_WEIGHT, GAME_HEIGHT);
+		gOffScreenImage.setColor(c);
+		
+		paint(gOffScreenImage);
+		g.drawImage(offScreenImage, 0, 0, null);
+		
+	}
+	
+	private class PaintThread implements Runnable{
+
+		public void run() {
+			while(true){
+				repaint();
+				try {
+					Thread.sleep(FLASH_TIME);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+	
+	private class KeyMonitor extends KeyAdapter{
+
+		public void keyReleased(KeyEvent e) {
+			myTank.keyReleased(e);
+		}
+
+		public void keyPressed(KeyEvent e) {
+			myTank.keyPressd(e);
+		}
+		
+	}
+	
+
+}

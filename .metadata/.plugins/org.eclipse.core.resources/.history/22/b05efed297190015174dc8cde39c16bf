@@ -1,0 +1,12 @@
+package edu.utexas.yh7483.tankwar;
+
+public class Tank {
+	
+	int xpos, ypos;
+	
+	public Tank(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+}

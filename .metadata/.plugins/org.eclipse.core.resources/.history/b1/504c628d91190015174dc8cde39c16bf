@@ -1,0 +1,99 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class TankClient extends Frame{
+	
+	int xpos = 100;
+	int ypos = 100;
+	
+	Image offScreenImage = null;
+
+	public static void main(String[] args) {
+		
+		TankClient tc = new TankClient();
+		tc.launchFrame();
+		
+	}
+	
+	public void launchFrame(){
+		
+		this.setLocation(100, 100);
+		this.setSize(800, 600);
+		this.setBackground(Color.GREEN);
+		this.setTitle("TankWar");
+		this.setVisible(true);
+		this.setResizable(false);
+		this.addWindowListener(new WindowAdapter(){
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
+		new Thread(new PaintThread()).start();
+	}
+	/*
+	public void paint(Graphics g) {
+		
+		Color c = g.getColor();
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0, 800, 600);
+		g.setColor(Color.RED);
+		g.fillOval(xpos, ypos, 30, 30);
+		g.setColor(c);
+		ypos += 3;
+		
+	}
+	
+	public void update(Graphics g) {
+		
+		if(offScreenImage == null)
+			offScreenImage = this.createImage(800, 600);
+		Graphics gOffScreenImage = offScreenImage.getGraphics();
+		paint(gOffScreenImage);
+		g.drawImage(offScreenImage, 0, 0, null);
+		
+	}
+*/
+	
+	public void paint111(Graphics g) {
+		
+		Color c = g.getColor();
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0, 800, 600);
+		g.setColor(Color.RED);
+		g.fillOval(xpos, ypos, 30, 30);
+		g.setColor(c);
+		ypos += 3;
+		
+	}
+	
+	public void paint(Graphics g) {
+		
+		if(offScreenImage == null)
+			offScreenImage = this.createImage(800, 600);
+		Graphics gOffScreenImage = offScreenImage.getGraphics();
+		paint111(gOffScreenImage);
+		g.drawImage(offScreenImage, 0, 0, null);
+		
+	}
+	
+	
+	
+	private class PaintThread implements Runnable{
+
+		public void run() {
+			while(true){
+				repaint();
+				try {
+					Thread.sleep(50);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+	}
+	
+
+}

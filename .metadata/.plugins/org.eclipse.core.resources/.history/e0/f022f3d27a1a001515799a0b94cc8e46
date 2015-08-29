@@ -1,0 +1,7 @@
+package edu.utexas.yh7483.tankwar;
+
+public class Explode {
+	int xpos, ypos;
+	private boolean live = true;
+	
+}

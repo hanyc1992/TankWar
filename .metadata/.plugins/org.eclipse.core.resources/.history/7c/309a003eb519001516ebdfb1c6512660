@@ -1,0 +1,28 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.Color;
+
+public class Missile {
+	
+	public static final int MISSIILE_RADIUS = 10;
+	public static final int X_PACE = 30;
+	public static final int Y_PACE = 30;
+	
+	public static final Color MISSIILE_COLOR = Color.BLACK;
+	
+	int xpos, ypos;
+	Tank.Direction dir;
+	
+	public Missile(int xpos, int ypos){
+		this.xpos = xpos;
+		this.ypos = ypos;
+	}
+	
+	public void draw(Graphics g) {
+		Color c = g.getColor();
+		g.setColor(MISSIILE_COLOR);
+		g.fillOval(xpos, ypos, MISSIILE_RADIUS, MISSIILE_RADIUS);
+		g.setColor(c);
+	}
+	
+}

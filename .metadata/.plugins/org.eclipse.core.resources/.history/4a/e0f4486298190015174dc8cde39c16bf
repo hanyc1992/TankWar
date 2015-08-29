@@ -1,0 +1,27 @@
+package edu.utexas.yh7483.tankwar;
+
+import java.awt.*;
+
+public class Tank {
+	
+	public static final int TANK_RADIUS = 30;
+	
+	int xpos, ypos;
+	
+	public Tank(int xpos, int ypos) {
+		this.xpos = xpos;
+		this.ypos = ypos;
+	}
+	
+	public void draw(Graphics g) {
+		
+		Color c = g.getColor();
+		g.setColor(Color.GREEN);
+		g.fillRect(0, 0, GAME_WEIGHT, GAME_HEIGHT);
+		g.setColor(Color.RED);
+		g.fillOval(xpos, ypos, 30, 30);
+		g.setColor(c);
+		
+	}
+	
+}
